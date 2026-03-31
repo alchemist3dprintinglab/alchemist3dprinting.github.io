@@ -63,10 +63,11 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             font-weight: 700;
             letter-spacing: 0.08em;
             text-transform: uppercase;
+            white-space: nowrap;   
         }
 
         .logo img {
@@ -80,6 +81,12 @@
             border-radius: 999px;
             background: linear-gradient(135deg, var(--primary), var(--accent));
             box-shadow: 0 0 10px rgba(37,99,235,0.8);
+            font-size: 18px;
+        }
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
         .nav-links {
@@ -430,8 +437,7 @@
 <header>
     <div class="nav">
         <div class="logo">
-            <img src="logo.png" alt="Alchemist 3D Printing Logo">
-            <span>Alchemist 3D Printing</span>
+            <img src="logo.png" alt="Alchemist 3D Printing">
         </div>
         <div class="nav-links">
             <a href="#services">Services</a>

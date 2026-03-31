@@ -13,185 +13,665 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alchemist 3D printing</title>
-<style>
-:root {
-    --primary: #2563eb;
-    --primary-dark: #1d4ed8;
-    --bg: #ffffff;
-    --card: #ffffff;
-    --text: #111827;
-    --muted: #6b7280;
-    --accent: #22c55e;
-}
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --bg: #0f172a;
+            --card: #111827;
+            --text: #e5e7eb;
+            --muted: #9ca3af;
+            --accent: #22c55e;
+        }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
 
-body {
-    background: #ffffff;
-    color: var(--text);
-    line-height: 1.6;
-}
+        body {
+            background: radial-gradient(circle at top, #1e293b 0, #020617 55%);
+            color: var(--text);
+            line-height: 1.6;
+        }
 
-a { text-decoration: none; color: inherit; }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-header {
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    background: #ffffff;
-    border-bottom: 1px solid rgba(0,0,0,0.08);
-}
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: linear-gradient(to bottom, rgba(15,23,42,0.95), rgba(15,23,42,0.8));
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(148,163,184,0.2);
+        }
 
-.nav {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0.75rem 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
+        .nav {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-.logo { font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+        .logo {
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
 
-.nav-links { display: flex; gap: 1.5rem; font-size: 0.9rem; }
-.nav-links a { color: var(--muted); }
-.nav-links a:hover { color: var(--text); }
+        .logo span {
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            box-shadow: 0 0 10px rgba(37,99,235,0.8);
+        }
 
-main {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem 3rem;
-}
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.9rem;
+        }
 
-.hero {
-    display: grid;
-    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-    gap: 2.5rem;
-    padding: 3rem 0 2.5rem;
-    align-items: center;
-}
+        .nav-links a {
+            color: var(--muted);
+        }
 
-.hero-gradient {
-    background: linear-gradient(135deg, #111827, #2563eb);
-    -webkit-background-clip: text;
-    color: transparent;
-}
+        .nav-links a:hover {
+            color: var(--text);
+        }
 
-.hero p { color: var(--muted); }
+        .btn-nav {
+            padding: 0.45rem 0.9rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148,163,184,0.5);
+            font-size: 0.85rem;
+        }
 
-.hero-card {
-    background: #ffffff;
-    border-radius: 1.3rem;
-    padding: 1.75rem;
-    border: 1px solid rgba(0,0,0,0.08);
-}
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border-radius: 999px;
+            padding: 0.8rem 1.4rem;
+            border: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            cursor: pointer;
+            box-shadow: 0 15px 35px rgba(37,99,235,0.35);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
 
-.metric {
-    background: #ffffff;
-    border: 1px solid rgba(0,0,0,0.08);
-}
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 18px 40px rgba(37,99,235,0.45);
+        }
 
-.metric-label { color: var(--muted); }
+        .btn-outline {
+            border-radius: 999px;
+            padding: 0.8rem 1.4rem;
+            border: 1px solid rgba(148,163,184,0.5);
+            font-size: 0.95rem;
+            cursor: pointer;
+            background: transparent;
+            color: var(--text);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
 
-.cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 1rem;
-}
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 3rem;
+        }
 
-.card {
-    background: #ffffff;
-    border-radius: 1rem;
-    padding: 1.2rem;
-    border: 1px solid rgba(0,0,0,0.08);
-}
+        /* Hero */
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+            gap: 2.5rem;
+            padding: 3rem 0 2.5rem;
+            align-items: center;
+        }
 
-.card p { color: var(--muted); }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--muted);
+            padding: 0.25rem 0.6rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148,163,184,0.4);
+            margin-bottom: 0.8rem;
+        }
 
-.pill { color: var(--muted); border: 1px solid rgba(0,0,0,0.1); }
+        .badge-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: var(--accent);
+            box-shadow: 0 0 10px rgba(34,197,94,0.7);
+        }
 
-.contact-box {
-    background: #ffffff;
-    border-radius: 1rem;
-    padding: 1.2rem;
-    border: 1px solid rgba(0,0,0,0.08);
-}
+        .hero h1 {
+            font-size: clamp(2.2rem, 3.1vw + 1.4rem, 3.4rem);
+            line-height: 1.1;
+            margin-bottom: 0.75rem;
+        }
 
-.contact-label { color: var(--muted); }
+        .hero-gradient {
+            background: linear-gradient(135deg, #e5e7eb, #60a5fa);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
 
-footer {
-    padding-top: 2rem;
-    margin-top: 2rem;
-    border-top: 1px solid rgba(0,0,0,0.08);
-    font-size: 0.8rem;
-    color: var(--muted);
-}
+        .hero p {
+            color: var(--muted);
+            font-size: 0.98rem;
+            max-width: 30rem;
+            margin-bottom: 1.5rem;
+        }
 
-@media (max-width: 840px) {
-    .hero { grid-template-columns: 1fr; }
-}
-</style>
+        .hero-actions {
+            display: flex;
+            gap: 0.9rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 0.8rem;
+            color: var(--muted);
+            flex-wrap: wrap;
+        }
+
+        .hero-meta span strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .hero-card {
+            background: radial-gradient(circle at top, #1f2933 0, #020617 60%);
+            border-radius: 1.3rem;
+            padding: 1.75rem 1.6rem;
+            border: 1px solid rgba(148,163,184,0.35);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.75rem;
+            padding: 0.3rem 0.7rem;
+            border-radius: 999px;
+            background: rgba(15,23,42,0.9);
+            border: 1px solid rgba(148,163,184,0.4);
+            color: var(--muted);
+            margin-bottom: 0.9rem;
+        }
+
+        .chip-box {
+            width: 8px;
+            height: 8px;
+            border-radius: 2px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+        }
+
+        .hero-card-main {
+            margin-bottom: 1.1rem;
+        }
+
+        .hero-card-main h2 {
+            font-size: 1rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .hero-card-main p {
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .hero-card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.9rem;
+            font-size: 0.78rem;
+        }
+
+        .metric {
+            padding: 0.8rem;
+            border-radius: 0.9rem;
+            border: 1px solid rgba(148,163,184,0.35);
+            background: rgba(15,23,42,0.9);
+        }
+
+        .metric-label {
+            color: var(--muted);
+            margin-bottom: 0.15rem;
+        }
+
+        .metric-value {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .metric-pill {
+            font-size: 0.7rem;
+            margin-top: 0.2rem;
+            padding: 0.1rem 0.45rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148,163,184,0.4);
+            display: inline-block;
+            color: var(--muted);
+        }
+
+        .glow {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 0 0, rgba(59,130,246,0.35), transparent 55%),
+                        radial-gradient(circle at 100% 80%, rgba(56,189,248,0.18), transparent 55%);
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        /* Sections */
+        section {
+            margin-top: 2.5rem;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .section-subtitle {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-bottom: 1.3rem;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1rem;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 1rem;
+            padding: 1.2rem;
+            border: 1px solid rgba(148,163,184,0.3);
+        }
+
+        .card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .card p {
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.6rem;
+        }
+
+        .pill {
+            border-radius: 999px;
+            border: 1px solid rgba(148,163,184,0.35);
+            font-size: 0.75rem;
+            padding: 0.15rem 0.55rem;
+            color: var(--muted);
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+            gap: 1.5rem;
+        }
+
+        .contact-box {
+            background: var(--card);
+            border-radius: 1rem;
+            padding: 1.2rem 1.3rem;
+            border: 1px solid rgba(148,163,184,0.35);
+            font-size: 0.88rem;
+        }
+
+        .contact-row {
+            margin-top: 0.7rem;
+        }
+
+        .contact-label {
+            font-size: 0.78rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+        }
+
+        .contact-value {
+            font-size: 0.95rem;
+        }
+
+        .contact-actions {
+            margin-top: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+
+        footer {
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(148,163,184,0.25);
+            font-size: 0.8rem;
+            color: var(--muted);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            justify-content: space-between;
+        }
+
+        @media (max-width: 840px) {
+            .hero {
+                grid-template-columns: minmax(0, 1fr);
+            }
+            .hero-card {
+                order: -1;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 640px) {
+            main {
+                padding-inline: 1rem;
+            }
+            .nav {
+                padding-inline: 1rem;
+            }
+            .hero {
+                padding-top: 2.2rem;
+            }
+        }
+    </style>
 </head>
 <body>
 <header>
     <div class="nav">
-        <div class="logo">Alchemist 3D Printing</div>
+        <div class="logo">
+            <span></span> Alchemist 3D Printing
+        </div>
         <div class="nav-links">
             <a href="#services">Services</a>
             <a href="#materials">Materials</a>
             <a href="#process">How it works</a>
-            <a href="#contact">Contact</a>
+            <a class="btn-nav" href="#contact">Contact</a>
         </div>
     </div>
 </header>
 
 <main>
-<section class="hero">
-<div>
-<h1>Bring your <span class="hero-gradient">ideas to life</span> with professional 3D printing.</h1>
-<p>Affordable, high-quality 3D printing services for students and startups.</p>
-</div>
+    <!-- Hero -->
+    <section class="hero">
+        <div>
+            <div class="badge">
+                <div class="badge-dot"></div>
+                Rapid Prototyping · Custom Parts 
+            </div>
+            <h1>
+                Bring your <span class="hero-gradient">ideas to life</span> with professional 3D printing.
+            </h1>
+            <p>
+                We offer affordable, high-quality 3D printing services for students, startups, hobby projects and research work.
+                Share your CAD file or even a rough sketch – We’ll help you turn it into a functional part.
+            </p>
+            <div class="hero-actions">
+                <a href="https://wa.me/918928930190?text=Hi%20I%20want%20a%203D%20print"
+                   class="btn-primary">
+                    📲 Get quote on WhatsApp
+                </a>
+                <a href="#contact" class="btn-outline">
+                    ✉️ Email your design
+                </a>
+            </div>
+            <div class="hero-meta">
+                <span><strong>Fast lead time</strong> · 2–4 days for most parts</span>
+                <span><strong>Located in Navi Mumbai</strong> </span>
+            </div>
+        </div>
 
-<div class="hero-card">
-<h2>PLA prototype · ₹9/gram</h2>
-<div class="metric">Layer height: 0.08–0.24mm</div>
-<div class="metric">Build: 220×220×250mm</div>
-<div class="metric">Material: PLA / PETG / ABS / PA / CF</div>
-</div>
-</section>
+        <div class="hero-card">
+            <div class="glow"></div>
+            <div class="chip">
+            </div>
+            <div class="hero-card-main">
+                <h2>PLA prototype · ₹9/gram<gram>
+                <p></p>
+            </div>
+            <div class="hero-card-grid">
+                <div class="metric">
+                    <div class="metric-label">Layer height</div>
+                    <div class="metric-value">0.08mm - 0.24mm</div>
+                    <div class="metric-pill">Fine surface finish</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Build size</div>
+                    <div class="metric-value">220 × 220 × 250 mm</div>
+                    <div class="metric-pill">Larger on request</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Material</div>
+                    <div class="metric-value">PLA / PETG/ ABS/ PA/ CF</div>
+                    <div class="metric-pill">ABS & more on demand</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Lead time</div>
+                    <div class="metric-value">2–4 days</div>
+                    <div class="metric-pill">Depends on complexity</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section id="services">
-<h2>Services</h2>
-<div class="cards">
-<div class="card">Custom 3D Printing</div>
-<div class="card">Student Projects</div>
-<div class="card">CAD Assistance</div>
-</div>
-</section>
+    <!-- Services -->
+    <section id="services">
+        <h2 class="section-title">Services</h2>
+        <p class="section-subtitle">
+            From one-off prototypes to small batches, We can help with printing, basic design tweaks and guidance.
+        </p>
+        <div class="cards">
+            <div class="card">
+                <h3>Custom 3D Printing</h3>
+                <p>
+                    Send your STL / STEP file and We’ll print it as per your requirements – material, infill, strength and finish.
+                </p>
+                <div class="pill-row">
+                    <span class="pill">Prototypes</span>
+                    <span class="pill">Functional parts</span>
+                    <span class="pill">Hobby projects</span>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Student & Project Support</h3>
+                <p>
+                    Special focus on engineering and school projects. We can help you select material, wall thickness and infill to match your use case.
+                </p>
+                <div class="pill-row">
+                    <span class="pill">Final year projects</span>
+                    <span class="pill">Robotics</span>
+                    <span class="pill">RC / Drone parts</span>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Basic CAD Assistance</h3>
+                <p>
+                    Have an idea but not a proper model? We can help you clean up existing files or make small edits before printing.
+                </p>
+                <div class="pill-row">
+                    <span class="pill">Minor redesign</span>
+                    <span class="pill">File repair</span>
+                    <span class="pill">Export to STL</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section id="contact">
-<h2>Contact</h2>
-<div class="contact-box">
-WhatsApp: +91-8369736683<br>
-Email: alchemist3d.printing@gmail.com
-</div>
-</section>
+    <!-- Materials -->
+    <section id="materials">
+        <h2 class="section-title">Materials & Capabilities</h2>
+        <p class="section-subtitle">
+            FDM 3D printing suitable for functional parts, brackets, enclosures, mounts and visual prototypes.
+        </p>
+        <div class="cards">
+            <div class="card">
+                <h3>Materials</h3>
+                <p>
+                    Common options are:
+                </p>
+                <ul style="margin-top:0.5rem; padding-left:1.1rem; font-size:0.85rem; color:var(--muted);">
+                    <li>PLA – general purpose, good detail, low warp</li>
+                    <li>PETG – stronger, temperature & impact resistant</li>
+                    <li>ABS – more heat resistant</li>
+                    <li>PA – more flixible</li>
+                    <li>CF – more structural strength</li>
 
-<footer>
-© <span id="year"></span> Alchemist 3D Printing
-</footer>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Quality Options</h3>
+                <p>
+                    Choose between faster prints or finer surface finish depending on your requirement and budget.
+                </p>
+                <div class="pill-row">
+                    <span class="pill">0.12–0.28 mm layers</span>
+                    <span class="pill">10–100% infill</span>
+                    <span class="pill">Multiple colors</span>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Typical Use Cases</h3>
+                <p>
+                    Enclosures, brackets, fixtures, robot parts, drone frames, project models, jigs, and display models.
+                </p>
+                <div class="pill-row">
+                    <span class="pill">Engineering</span>
+                    <span class="pill">Hobby</span>
+                    <span class="pill">Academic</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section id="process">
+        <h2 class="section-title">How it works</h2>
+        <p class="section-subtitle">
+            Simple 4-step process. Most quotes are shared within a few hours.
+        </p>
+        <div class="cards">
+            <div class="card">
+                <h3>1. Share your design</h3>
+                <p>Send your STL / STEP / Fusion / SolidWorks file.</p>
+            </div>
+            <div class="card">
+                <h3>2. Get a quote</h3>
+                <p>Based on size, material and quality, We’ll share price and estimated delivery time.</p>
+            </div>
+            <div class="card">
+                <h3>3. Printing & updates</h3>
+                <p>Once confirmed, We start printing and share progress photos if needed.</p>
+            </div>
+            <div class="card">
+                <h3>4. Delivery / Pickup</h3>
+                <p>Pickup in Navi Mumbai or get it shipped via courier anywhere in Navi Mumbai.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <h2 class="section-title">Contact & Orders</h2>
+        <p class="section-subtitle">
+            Send your design file or a message with details – size, quantity, and where you want it delivered.
+        </p>
+        <div class="contact-grid">
+            <div class="contact-box">
+                <div class="contact-row">
+                    <div class="contact-label">WhatsApp</div>
+                    <div class="contact-value">
+                        <a href="https://wa.me/918928930190?text=Hi%2C%20I%20want%20a%203D%20print">
+                            +91-8369736683
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-row">
+                    <div class="contact-label">Email</div>
+                    <div class="contact-value">
+                        <a href="mailto:alchemist3d.printing@gmail.com">alchemist3d.printing@gmail.com</a>
+                    </div>
+                </div>
+                <div class="contact-row">
+                    <div class="contact-label">Location</div>
+                    <div class="contact-value">Navi Mumbai, India · Shipping Navi Mumbai India</div>
+                </div>
+                <div class="contact-actions">
+                    <a class="btn-primary"
+                       href="https://wa.me/91892830190?text=Hi%2C%20I%20want%20to%20get%20a%203D%20print%20quote">
+                        📎 Send file on WhatsApp
+                    </a>
+                    <a class="btn-outline" href="mailto:alchemist3d.printing@gmail.com?subject=3D%20Printing%20Enquiry">
+                        ✉️ Send files by email
+                    </a>
+                </div>
+            </div>
+            <div class="contact-box">
+                <div class="contact-label">What to include for a fast quote</div>
+                <ul style="margin-top:0.5rem; padding-left:1.1rem;">
+                    <li>STL / STEP file, or sketches with main dimensions</li>
+                    <li>Approx. quantity needed</li>
+                    <li>Preferred material (PLA, PETG, etc.) if you know</li>
+                    <li>Deadline or expected delivery date</li>
+                    <li>Delivery city / PIN code</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <span>© <span id="year"></span> Alchemist 3D printing · All rights reserved.</span>
+        
+    </footer>
 </main>
 
 <script>
-document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
-
-
-

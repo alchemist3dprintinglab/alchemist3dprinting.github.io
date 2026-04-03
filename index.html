@@ -32,11 +32,20 @@
         }
 
         body {
-            background: #ffffff;
-            color: var(--text);
+            background: url("bg.jpg") no-repeat center center fixed;
+            background-size: cover;
             line-height: 1.6;
         }
-
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.85); /* white overlay */
+            z-index: -1;
+        }
         a {
             text-decoration: none;
             color: inherit;
@@ -156,8 +165,22 @@
             gap: 2.5rem;
             padding: 3rem 0 2.5rem;
             align-items: center;
+            background: url("hero-bg.jpg") center/cover no-repeat fixed;
+            padding: 4rem 0;
+            position: relative;
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.9);
+            z-index: 0;
         }
 
+        .hero > * {
+            position: relative;
+            z-index: 1;
+        }
         .badge {
             display: inline-flex;
             align-items: center;
@@ -428,6 +451,10 @@
             gap: 0.6rem;
             justify-content: space-between;
         }
+        .parallax-section {
+            height: 300px;
+            background: url("bg.jpg") center/cover no-repeat fixed;
+        }
 
         @media (max-width: 840px) {
             .hero {
@@ -528,7 +555,7 @@
             </div>
         </div>
     </section>
-
+    <section class="parallax-section"></section>
     <!-- Services -->
     <section id="services">
         <h2 class="section-title">Services</h2>
@@ -571,7 +598,7 @@
             </div>
         </div>
     </section>
-
+    <section class="parallax-section"></section>
     <!-- Materials -->
     <section id="materials">
         <h2 class="section-title">Materials & Capabilities</h2>

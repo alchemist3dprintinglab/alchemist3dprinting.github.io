@@ -465,6 +465,67 @@
         p {
             line-height: 1.7;
         }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            animation: fadeUp 0.3s ease;
+                }
+            
+        .modal-content input,
+        .modal-content textarea,
+        .modal-content select {
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+                }
+
+        .modal-content button {
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        .close {
+            float: right;
+            font-size: 22px;
+            cursor: pointer;
+        }
+        .btn-quote {
+            background: linear-gradient(135deg, var(--accent), #ff0000);
+            color: white;
+
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            border: none;
+    
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+
+            box-shadow: 0 5px 15px rgba(37,99,235,0.3);
+            transition: all 0.25s ease;
+        }
+
+        .btn-quote:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37,99,235,0.45);
+        }
         @media (max-width: 840px) {
             .hero {
                 grid-template-columns: 1fr;
@@ -504,6 +565,56 @@
         }
     </style>
 </head>
+
+<!-- GET QUOTE POPUP -->
+<div id="quoteModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Get Quote</h2>
+
+    <form action="https://formsubmit.co/alchemist3d.printing@gmail.com" method="POST" enctype="multipart/form-data">
+      
+      <input type="text" name="Name" placeholder="Full Name" required>
+      <input type="email" name="Email" placeholder="Email">
+      <input type="tel" name="Phone" placeholder="Phone" required>
+
+      <select name="Service">
+        <option>3D Printing</option>
+        <option>CAD Design</option>
+      </select>
+
+      <input type="file" name="File">
+
+      <textarea name="Message" placeholder="Your message"></textarea>
+
+      <!-- IMPORTANT -->
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_subject" value="New Quote Request!">
+
+      <button type="submit" class="btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
+<script>
+const modal = document.getElementById("quoteModal");
+
+// open popup
+function openQuote() {
+    modal.style.display = "block";
+}
+
+// close popup
+document.querySelector(".close").onclick = function() {
+    modal.style.display = "none";
+}
+
+// close when clicking outside
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>    
 <body>
 <header>
     <div class="nav">
@@ -515,6 +626,9 @@
             <a href="#materials">Materials</a>
             <a href="#process">How it works</a>
             <a class="btn-nav" href="#contact">Contact</a>
+             <button onclick="openQuote()" class="btn-quote">
+                Get Quote
+            </button>
         </div>
     </div>
 </header>

@@ -92,12 +92,6 @@
             box-shadow: 0 0 10px rgba(37,99,235,0.8);
             font-size: 18px;
         }
-        .nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
         .nav-links {
             display: flex;
             gap: 1.5rem;
@@ -155,6 +149,9 @@
 
         /* Hero */
         .hero { 
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 2.5rem;
             align-items: center;
             overflow: hidden;
             background: url("bg2.jpg") center/cover no-repeat fixed;
@@ -167,9 +164,9 @@
             position: absolute;
             inset: 0;
             background: linear-gradient(
-            to bottom,
-            rgba(255,255,255,0.9),
-            rgba(255,255,255,0.95)
+                to bottom,
+                rgba(255,255,255,0.9),
+                rgba(255,255,255,0.95)
             );
             z-index: 0;
         }
@@ -246,6 +243,11 @@
             border: 1px solid rgba(148,163,184,0.35);
             position: relative;
             overflow: hidden;
+            width: 100%;
+            max-width: 500px;
+            justify-self: end;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            transition: all 0.25s ease;
         }
 
         .chip {
@@ -281,11 +283,6 @@
             font-size: 0.85rem;
             color: var(--muted);
         }
-        .hero-card {
-            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-            transition: all 0.25s ease;
-        }
-
         .hero-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(0,0,0,0.12);
@@ -470,11 +467,14 @@
         }
         @media (max-width: 840px) {
             .hero {
-                grid-template-columns: minmax(0, 1fr);
+                grid-template-columns: 1fr;
             }
+    
             .hero-card {
-                order: -1;
+                justify-self: center;
+                margin-top: 20px;
             }
+
             .nav-links {
                 display: none;
             }
@@ -551,7 +551,7 @@
             <div class="chip">
             </div>
             <div class="hero-card-main">
-                <h2>PLA prototype · ₹9/gram<gram>
+                <h2>PLA prototype · ₹9/gram<h2>
                 <p></p>
             </div>
             <div class="hero-card-grid">

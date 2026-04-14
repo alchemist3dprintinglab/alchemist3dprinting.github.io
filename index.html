@@ -43,7 +43,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.85); /* white overlay */
+            background: rgba(255, 255, 255, 0.3); /* white overlay */
             z-index: -1;
         }
         a {
@@ -153,24 +153,18 @@
             grid-template-columns: 1.2fr 1fr;
             gap: 2.5rem;
             align-items: center;
-            overflow: hidden;
             background: url("bg2.jpg") center/cover no-repeat fixed;
             padding: 5rem 0;
-            position: relative;
-            animation: fadeUp 0.8s ease;
         }
-        .hero::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                to bottom,
-                rgba(255,255,255,0.9),
-                rgba(255,255,255,0.95)
-            );
-            z-index: 0;
+       
+        .hero-text {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            max-width: 550px;
+            backdrop-filter: blur(6px);
         }
-
         .hero > * {
             position: relative;
             z-index: 1;
@@ -636,7 +630,7 @@ window.onclick = function(event) {
 <main>
     <!-- Hero -->
     <section class="hero">
-        <div>
+        <div class="hero-text">
 
             <h1>
                 Bring your <span class="hero-gradient">ideas to life</span> with professional 3D printing.

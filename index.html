@@ -546,7 +546,29 @@
             font-weight: 700;
             color: #111827;
         }
-        
+        .section-subtitle {
+            margin-top: 6px;
+            font-size: 0.95rem;
+            color: #374151;
+
+            background: rgba(255, 255, 255, 0.75);
+            padding: 6px 12px;
+            border-radius: 8px;
+
+            backdrop-filter: blur(4px);
+            display: inline-block;
+        }
+        .section-header {
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .section-subtitle {
+            margin-top: 8px;
+            padding-left: 10px;
+            border-left: 3px solid #ff3b3b;
+            color: #374151;
+            font-size: 0.95rem;
+        }
         @media (max-width: 640px) {
             main {
                 padding-inline: 1rem;
@@ -711,10 +733,10 @@ window.onclick = function(event) {
     <section id="services">
         <div class="section-header">
             <h2>Services</h2>
+            <p class="section-subtitle">
+        From one-off prototypes to small batches, We can help with printing, basic design tweaks and guidance.
+            </p>
         </div>
-        <p class="section-subtitle">
-            From one-off prototypes to small batches, We can help with printing, basic design tweaks and guidance.
-        </p>
         <div class="cards">
             <div class="card">
                 <h3>Custom 3D Printing</h3>
@@ -756,10 +778,11 @@ window.onclick = function(event) {
     <section id="materials">
         <div class="section-header">
             <h2>Materials & Capabilities</h2>
+            <p class="section-subtitle">
+                FDM 3D printing suitable for functional parts, brackets, enclosures, mounts and visual prototypes.
+            </p>
         </div>
-        <p class="section-subtitle">
-            FDM 3D printing suitable for functional parts, brackets, enclosures, mounts and visual prototypes.
-        </p>
+        
         <div class="cards">
             <div class="card">
                 <h3>Materials</h3>
@@ -804,10 +827,10 @@ window.onclick = function(event) {
     <section id="process">
         <div class="section-header">
             <h2>How it works</h2>
+            <p class="section-subtitle">
+                Simple 4-step process. Most quotes are shared within a few hours.
+            </p>
         </div>
-        <p class="section-subtitle">
-            Simple 4-step process. Most quotes are shared within a few hours.
-        </p>
         <div class="cards">
             <div class="card">
                 <h3>1. Share your design</h3>
@@ -832,10 +855,10 @@ window.onclick = function(event) {
     <section id="contact">
         <div class="section-header">
             <h2>Contact and Orders</h2>
+             <p class="section-subtitle">
+                Send your design file or a message with details – size, quantity, and where you want it delivered.
+            </p>
         </div>
-        <p class="section-subtitle">
-            Send your design file or a message with details – size, quantity, and where you want it delivered.
-        </p>
         <div class="contact-grid">
             <div class="contact-box">
                 <div class="contact-row">

@@ -531,7 +531,22 @@
                 display: none;
             }
         }
+        .section-header {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 10px;
 
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(6px);
+
+            margin-bottom: 10px;
+        }
+        .section-header h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #111827;
+        }
+        
         @media (max-width: 640px) {
             main {
                 padding-inline: 1rem;
@@ -543,7 +558,15 @@
                 padding-top: 2.2rem;
             }
         }
-
+        .section-header h2::after {
+            content: "";
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: #ff3b3b;
+            margin-top: 6px;
+            border-radius: 2px;
+        }
         @keyframes fadeUp {
             from {
                 opacity: 0;
@@ -686,7 +709,9 @@ window.onclick = function(event) {
     
     <!-- Services -->
     <section id="services">
-        <h2 class="section-title">Services</h2>
+        <div class="section-header">
+            <h2>Services</h2>
+        </div>
         <p class="section-subtitle">
             From one-off prototypes to small batches, We can help with printing, basic design tweaks and guidance.
         </p>
@@ -729,7 +754,9 @@ window.onclick = function(event) {
     
     <!-- Materials -->
     <section id="materials">
-        <h2 class="section-title">Materials & Capabilities</h2>
+        <div class="section-header">
+            <h2>Materials & Capabilities</h2>
+        </div>
         <p class="section-subtitle">
             FDM 3D printing suitable for functional parts, brackets, enclosures, mounts and visual prototypes.
         </p>
